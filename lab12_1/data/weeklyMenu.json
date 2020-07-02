@@ -1,0 +1,61 @@
+[
+	{
+	  
+	  "name": "Cheese Pasta",
+	  "category" : "Snacks",
+	  "description": "Mac'n Cheese",
+	  "price": 100,
+	  "priceDiscount":10,
+	  "image": "https://ohsheglows.com/wp-content/uploads/2017/02/10minuteveganpasta-6481.jpg",
+	  "rating" : 4,
+	  "startDates": ["2022-01-05,10:00", "2022-02-12,10:00", "2023-01-06,10:00"]
+	},
+	{
+		
+	  
+	  "name": "Sindhi Biryani",
+	  "category" : "Meal",
+	  "description": "Chef's Special",
+	  "price": 120,
+	  "priceDiscount":15,
+	  "image": "https://www.bestiefood.com/wp-content/uploads/2020/02/best-chicken-biryani-recipe.jpg",
+	  "rating" : 5,
+	  "startDates": ["2021-03-11,10:00", "2021-05-02,10:00", "2021-06-09,10:00"]
+	  
+	},
+	{
+	  
+	  "name": "Chicken Bread",
+	  "category" : "Snacks",
+	  "description": "Delight is in the name",
+	  "price": 80,
+	  "priceDiscount":10,
+	  "image": "https://spatulainmypocketdotcom.files.wordpress.com/2015/09/allthree.jpg",
+	  "rating" : 4.2,
+	  "startDates":["2021-04-25,10:00", "2021-07-20,10:00", "2021-10-05,10:00"]
+	}, 
+	{
+	  
+	  "name": "Butter Bread",
+	  "category" : "Snacks",
+	  "description": "Delight is in the name",
+	  "price": 70,
+	  "priceDiscount":10,
+	  "image": "https://spatulainmypocketdotcom.files.wordpress.com/2015/09/allthree.jpg",
+	  "rating" : 4.5,
+	  "startDates": ["2021-06-19,10:00", "2021-07-20,10:00", "2021-08-18,10:00"]
+	},
+	{
+	  
+	  "name": "Chicken fillets",
+	  "category" : "Snacks",
+	  "description": "Delight is in the name",
+	  "price": 90,
+	  "priceDiscount":10,
+	  "image": "https://spatulainmypocketdotcom.files.wordpress.com/2015/09/allthree.jpg",
+	   "rating" : 3.9,
+	  "startDates": ["2022-01-05,10:00", "2022-02-12,10:00", "2023-01-06,10:00"]
+	  
+	}
+  ]
+  
