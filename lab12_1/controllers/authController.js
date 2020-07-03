@@ -10,21 +10,25 @@ const { promisify } = require('util');
 //     res.send(users);
 // }
 
-const signToken = catchAsync(async(id) => {
-    return jwt.sign({id:id}, process.env.JWT_SECRET, {
-        expiresIn: process.env.JWT_EXPIRES_IN
-    });
-});
+
+
+const signToken = (id) => {
+  return jwt.sign({ id: id }, "my-32-character-ultra-secure-and-ultra-long-secret", {
+    expiresIn: "90d",
+  });
+};
+
 
 exports.signup = catchAsync(async(req, res,next) =>{
-    console.log("in signup method")
+    
     const newuser = await User.create(req.body);
-    console.log(newuser.name)
+    //console.log("printing id",newuser._id)
     const token = signToken(newuser._id);
+   // console.log("printing token",token)
 
     res.status(201).json({
         status: 'signup success',
-        token:"scascacasdcascas",
+        token,
         data: {
             newuser
         }
@@ -47,8 +51,8 @@ exports.login = catchAsync(async(req, res,next) =>{
         app.showerror(req, res);
    }
 
-
-    const token = await signToken(user._id);
+   // console.log("user id in login",user._id)
+    const token =  signToken(user._id);
     
     res.status(200).json({ 
         status: 'success',
@@ -61,12 +65,14 @@ exports.login = catchAsync(async(req, res,next) =>{
 // create a middleware function here which should check for tokens, to see user are logined and then restrict or provide them access to certain routers
 exports.protect = catchAsync(async (req, res, next) => {
     // add implementation of tokens here
+    // console.log("in protect",req.body)
+
     let token;
     if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
         token = req.headers.authorization.split(" ")[1];
 
     }
-    console.log(token);
+   // console.log("i am token",token);
     if (!token) {
         const app = new appError("You are not logged in, login to get access to this route", 401)
         app.showerror(req, res)
@@ -75,7 +81,9 @@ exports.protect = catchAsync(async (req, res, next) => {
     //     const app = new appError("You are not logged in, login to get access to this route", 401)
     //     app.showerror(req, res)
     // }
-    const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET)
-
+    const decoded = await promisify(jwt.verify)(token,"my-32-character-ultra-secure-and-ultra-long-secret")
+    console.log(decoded)
+    // console.log("in protect",req.body)
+    next()
 });
 

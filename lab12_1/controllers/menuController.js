@@ -68,8 +68,13 @@ exports.findMenu = catchAsync(async (req, res,next) => {
 
 exports.createMenu = catchAsync(async(req, res,next) => {
   // try{
-  const newMenu = await Menu.create(req.body);
-
+    console.log("I entered in create menu")
+    console.log("body",req.body)
+  const newMenu = await (Menu.create(req.body));
+   if(!newMenu){
+     const app = new AppError(`Can not find Menu`, 404);
+     app.showerror(req, res)
+   }
   res.status(201).json({
     status: 'success',
     data: {

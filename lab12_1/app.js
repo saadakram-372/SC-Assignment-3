@@ -1,17 +1,20 @@
 const express = require("express");
 const morgan = require("morgan");
+const bodyParser = require('body-parser');
 const AppError = require("./utils/appError.js");
 const menuRoute = require("./routes/menuRoutes");
 const userRoute = require("./routes/userRoutes");
 const errorController = require("./controllers/errorController")
 const app = express();
-
+const dotenv = require('dotenv');
+dotenv.config();
 if (process.env.NOD_ENV === "development"){
 	app.use(morgan('dev'));
 }
 
-app.use(express.json());
-
+app.use(bodyParser.urlencoded({ extended: false }))
+// parse application/json
+app.use(bodyParser.json())
 app.use((req,res,next)=>{
 	console.log('Hello from the middleware......');
 	next();
