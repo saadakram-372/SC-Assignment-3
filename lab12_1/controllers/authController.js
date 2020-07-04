@@ -50,7 +50,7 @@ exports.login = catchAsync(async(req, res,next) =>{
         const app =  new appError("Invalid email or password", 401);
         app.showerror(req, res);
    }
-
+   else{
    // console.log("user id in login",user._id)
     const token =  signToken(user._id);
     
@@ -59,6 +59,7 @@ exports.login = catchAsync(async(req, res,next) =>{
         token,
         message: 'login success'
     })
+}
 });
 
 

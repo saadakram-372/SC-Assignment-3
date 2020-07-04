@@ -1,10 +1,11 @@
 const AppError = require("../utils/appError");
 
 
-const handleDuplicateFieldsDB = (req, res) => {
+const handleDuplicateFieldsDB = (req, res,next) => {
  	const message ="Duplicated value inserted, please use another value";
 	const app = new AppError(message,400);
 	app.showerror(req, res);
+	
 
 }
 
@@ -37,18 +38,20 @@ module.exports = (err,req,res,next) => {
 
 	if (process.env.NODE_ENV === "production") {
 		let error = {...err};
+		console.log(error);
 		if(error.code === 11000){
 			error = handleDuplicateFieldsDB(req, res);
 		}
-		 if (error.name === "ValidationError"){
+		 else if (error.name === "ValidationError"){
 			 error = handleValidationErrorDB(req, res);
 		 }
-
-		sendErrorprod(error,res);
+        else{
+		sendErrorprod(error,res,next);
 	}
+}
 	else if(process.env.NODE_ENV === "development"){
 		sendErrorDev(err,res);
 	} else {
-		new AppError ("NOPEEEE",404);
+		new AppError ("Unexpected behaviour encountered",404);
 	}
 }

@@ -3,15 +3,17 @@ const morgan = require("morgan");
 const bodyParser = require('body-parser');
 const AppError = require("./utils/appError.js");
 const menuRoute = require("./routes/menuRoutes");
+var envs = require('envs');
 const userRoute = require("./routes/userRoutes");
 const errorController = require("./controllers/errorController")
 const app = express();
 const dotenv = require('dotenv');
-dotenv.config();
-if (process.env.NOD_ENV === "development"){
+dotenv.config({ path: './config.env' });
+if (process.env.NODE_ENV === "development"){
 	app.use(morgan('dev'));
 }
-
+ 
+console.log(process.env.NODE_ENV)
 app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
