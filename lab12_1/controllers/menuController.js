@@ -45,7 +45,17 @@ exports.findMenu = catchAsync(async (req, res,next) => {
        const app = new AppError(`Can not find Menu with id ${req.params.id} on our database`, 404);
        app.showerror(req, res);
   }
-} else { 
+  else{
+    res.status(200).json({
+      status: 'success',
+      data: {
+        menu
+      }
+    });
+  }
+
+  }
+ else { 
     
      const app = new AppError(`Can not find Menu with id ${req.params.id} on our database`, 404);
      app.showerror(req, res);
@@ -55,12 +65,7 @@ exports.findMenu = catchAsync(async (req, res,next) => {
 
    // if (Object.entries(menu).length === 0){
     
-    res.status(200).json({
-    status: 'success',
-    data: {
-      menu
-    }
-  });
+    
   
 });
 
@@ -68,19 +73,21 @@ exports.findMenu = catchAsync(async (req, res,next) => {
 
 exports.createMenu = catchAsync(async(req, res,next) => {
   // try{
-    console.log("I entered in create menu")
+    // console.log("I entered in create menu")
     console.log("body",req.body)
   const newMenu = await (Menu.create(req.body));
    if(!newMenu){
      const app = new AppError(`Can not find Menu`, 404);
      app.showerror(req, res)
    }
+   else{
   res.status(201).json({
     status: 'success',
     data: {
     tour: newMenu
     }
   });
+}
   // }
   // catch(err){
   //   res.status(400).json({
@@ -95,6 +102,7 @@ exports.createMenu = catchAsync(async(req, res,next) => {
 exports.updateMenu = catchAsync(async (req, res,next) => {
 
   var menu;
+ // console.log(req.body)
    if (req.params.id.match(/^[0-9a-fA-F]{24}$/)) {
     // it's an ObjectID    
     menu = await Menu.findByIdAndUpdate(req.params.id, req.body,{
@@ -104,24 +112,29 @@ exports.updateMenu = catchAsync(async (req, res,next) => {
      if (!menu) {
        const app = new AppError(`Can not find Menu with id ${req.params.id} on our database`, 404);
        app.showerror(req, res);
+      }
+      else{
+        res.status(200).json({
+          status: 'success',
+          data: {
+            menu  
+          }        
+      })
+} 
 }
-} else {
+else {
     // nope    
 
      const app = new AppError(`Can not find Menu with id ${req.params.id} on our database`, 404);
      app.showerror(req, res);
 
 }
-   
-    res.status(200).json({
-    status: 'success',
-    data: {
-      menu  
-    }
+   //console.log("in update")
+    
   });
 
 
-  });
+  
 //added now
 exports.getALLMenus = async(req,res,next) =>{
   try {
