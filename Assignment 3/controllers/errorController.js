@@ -15,6 +15,17 @@ const handleValidationErrorDB = (req,res) => {
 	app.showerror(req, res);
 };
 
+const handleExpiredTokenError = (req,res) => {
+	const message = "Your token has expired";
+	const app = new AppError(message, 400);
+	app.showerror(req, res);
+};
+
+const handleInvalidTokenError = (req,res) => {
+	const message = "Invalid Token";
+	const app = new AppError(message, 400);
+	app.showerror(req, res);
+};
 
 const sendErrorprod = (req, res) => {
 
@@ -45,6 +56,16 @@ module.exports = (err,req,res,next) => {
 		 else if (error.name === "ValidationError"){
 			 error = handleValidationErrorDB(req, res);
 		 }
+
+		 else if (error.name === "TokenExpiredError"){
+		 	error=handleExpiredTokenError(req,res);
+		 }
+
+		 else if (error.name === "JsonWebTokenError"){
+		 	error- handleInvalidTokenError(req,res);
+		 }
+       
+
         else{
 		sendErrorprod(error,res,next);
 	}

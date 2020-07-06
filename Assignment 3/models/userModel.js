@@ -17,6 +17,11 @@ email : {
 },
 photo : String,
 
+role: { 
+    type: String, 
+    enum: ['admin', 'user']
+}, 
+
 password :{
     type : String,
     required : [true,"Please provide Password"],
@@ -34,6 +39,10 @@ ConfirmPassword:{
         },
     message:'Passwords do not match'
     }
+},
+
+changedPasswordAt:{
+    type:String
 }
 });
 userSchema.pre('save',async function(next){
