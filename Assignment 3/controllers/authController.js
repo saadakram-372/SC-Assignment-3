@@ -162,7 +162,7 @@ const new_token = signToken(user._id,'user', true);
     status: 'success',
    
     message: 'Reset Token Generated.Email sent' })}
- catch (err) { return next(new AppError('There was an error sending email'), 500);}
+ catch (err) { return next(new AppError('There was an error sending Email'), 500);}
 
 //(for now sending the new token as response)
 
@@ -177,7 +177,7 @@ let password=req.body.password;
 let ConfirmPassword=req.body.ConfirmPassword;
 
  if (!ConfirmPassword || !password){
-       const app = new appError("Please provide password and confirm password", 400);
+       const app = new appError("Please provide Password and Confirm Password", 400);
        app.showerror(req, res);
    }
 

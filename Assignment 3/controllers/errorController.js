@@ -10,13 +10,13 @@ const handleDuplicateFieldsDB = (req, res,next) => {
 }
 
 const handleValidationErrorDB = (req,res) => {
-	const message = "Invalid input data";
+	const message = "Invalid Input Data";
 	const app = new AppError(message, 400);
 	app.showerror(req, res);
 };
 
 const handleExpiredTokenError = (req,res) => {
-	const message = "Your token has expired";
+	const message = "Your Token Has Expired";
 	const app = new AppError(message, 400);
 	app.showerror(req, res);
 };
@@ -29,7 +29,7 @@ const handleInvalidTokenError = (req,res) => {
 
 const sendErrorprod = (req, res) => {
 
-	const app = new AppError("Encountered unkown error in production mode", 404);
+	const app = new AppError("Encountered unkown error in Production Mode", 404);
 	app.showerror(req, res);
 	
 	}
