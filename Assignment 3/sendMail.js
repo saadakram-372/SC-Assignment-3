@@ -16,8 +16,8 @@ console.log("Email");
     from: "Admin <admin@example.com>",
     to: email,
     subject: 'Reset Token',
-    text: `Your reset token is: \n ${token} \n This token is valid for 15 minutes`, 
-    html: `<p> Your reset token is </p><p> ${token}</p <p>This token is valid for 15 minutes</p>`
+    text: `Your reset token is: \n ${token} \n\n This token is valid for 15 minutes`, 
+    html: `<p> Your reset token is </p><p> ${token}</p> <p>This token is valid for 15 minutes</p>`
 };
 
   // send mail with defined transport object
